@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MyBlogProject.Models.Model.Identification>
+
+@{
+    ViewBag.Title = "Site Kimlik Bilgisi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Site Kimlik Bilgisi</h2>
+
+<p>
+    @Html.ActionLink("Yeni Oluştur", "Create",null,new { @class="btn btn-primary"})
+</p>
+<table class="table table-bordered table-striped table-responsive-sm">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Keywords)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LogoURL)
+        </th>
+        <th>İşlemler</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Keywords)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <img src="@item.LogoURL" width="200" height="200" alt="@item.Title" />
+                @*@Html.DisplayFor(modelItem => item.LogoURL)*@
+            </td>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.IdentificationId }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.IdentificationId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

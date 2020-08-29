@@ -1,0 +1,55 @@
+﻿
+@model MyBlogProject.Models.Model.Contact
+@{
+    ViewBag.Title = "İletişim";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+
+<div class="sub-title">
+    <h2>Bana</h2> <h2 class="main-color">Yaz</h2>
+    <a href="/Home/Index/"><i class="icon-home"></i></a>
+</div>
+
+<div class="col-md-12 content-page">
+    <div class="col-md-12 blog-post">
+        <div class="row">
+
+          
+
+            <div class="col-md-4 col-sm-4">
+                <div class="contact-us-detail">
+                    <i class="icon-envelope-open color-5"></i>
+                    <p><a href="mailto:@Model.Email">@Model.Email</a></p>
+                </div>
+            </div>
+
+            <div class="col-md-5 col-sm-4">
+                <div class="contact-us-detail">
+                    <i class="icon-clock color-3"></i>
+                    <p>@Model.WorkHours</p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row margin-top-30">
+            <div class="col-md-12">
+
+                <div class="row">
+                    <p>* ile işaretli alanları doldurmak zorunludur.</p>
+
+
+                   @{ 
+                       Html.RenderAction("IletisimForm", "Home");
+                   }
+
+                </div>
+            </div>
+        </div>
+        <!-- Contact Me End -->
+
+
+    </div>
+</div>

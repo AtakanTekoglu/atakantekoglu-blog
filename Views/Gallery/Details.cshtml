@@ -1,0 +1,59 @@
+﻿@model MyBlogProject.Models.Model.Gallery
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Gallery</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinPicURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinPicURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MidPicURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MidPicURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BigPicURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BigPicURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GalleryId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

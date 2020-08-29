@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MyBlogProject.Models.Model.ContactForm>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datatable').DataTable(
+            {
+                "language": {
+                    "url":"//cdn.datatables.net/plug-ins/1.10.21/i18n/Turkish.json"
+                }
+            });
+    });
+</script>
+
+<h2>Ziyaretçi İletişim Form Mesajları</h2>
+<hr />
+
+<table class="table table-bordered table-striped table-responsive-sm" id="datatable">
+    <thead>
+    <tr>
+    <th>
+        İsim Soyisim
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Email)
+    </th>
+    <th>
+        Konu
+    </th>
+    <th>
+        Mesaj
+    </th>
+    <th></th>
+</tr>
+    </thead>
+    
+    <tbody> 
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Namesurname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message).ToString().Substring(0, 15)...............
+            </td>
+            <td>
+               
+                @Html.ActionLink("Detay", "Details", new { id = item.ContactFormId }, new { @class = "btn btn-default" }) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.ContactFormId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+    </tbody>
+   
+
+</table>

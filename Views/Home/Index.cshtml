@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MyBlogProject.Models.Model.Article>
+@{
+    ViewBag.Title = "Anasayfa";
+}
+
+
+<div class="row">
+
+
+    <div class="sub-title">
+        <h2>Yazılarım</h2>
+        <a href="/Home/Iletisim/"><i class="icon-envelope"></i></a>
+    </div>
+    
+
+    <div class="col-md-12 content-page">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-md-12 blog-post">
+                <div class="post-title">
+                    <a href="/Home/BlogDetay/@item.ArticleId"><h1>@item.Title</h1></a>
+                </div>
+                <div class="post-info">
+                    <span>@item.ReleaseDate.Value.Day @item.ReleaseDate.Value.ToString("MMMM", System.Globalization.CultureInfo.CreateSpecificCulture("tr")) @item.ReleaseDate.Value.Year&nbsp; <span class="admin-color">@item.Author.AuthorName @item.Author.AuthorSurname</span>&nbsp;   <a href="/Home/GetArticleByCategory/@item.Category.CategoryId">@item.Category.Name</a></span>
+                </div>
+                <p>@Html.Raw(item.Content.Substring(0, 350))...</p>
+                <a href="/Home/BlogDetay/@item.ArticleId" class="button button-style button-anim fa fa-long-arrow-right"><span>[Daha fazla]</span></a>
+            </div>
+        }
+
+
+
+
+        <div class="col-md-12 text-center">
+            <a href="javascript:void(0)" id="load-more-post" class="load-more-button">Yükle</a>
+            <div id="post-end-message"></div>
+        </div>
+
+
+
+
+
+    </div>
+
+</div>

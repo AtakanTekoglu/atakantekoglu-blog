@@ -1,0 +1,49 @@
+﻿@model MyBlogProject.Models.Model.ContactForm
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Ziyaretçi Mesaj Detay Görüntüleme</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            İsim Soyisim
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Namesurname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            Konu
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            Mesaj
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-primary" })
+</p>

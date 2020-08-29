@@ -1,0 +1,43 @@
+﻿@model MyBlogProject.Models.Model.SocialMedia
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SocialMedia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Instagram)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instagram)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Linkedin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Linkedin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Github)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Github)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SocialMediaId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
