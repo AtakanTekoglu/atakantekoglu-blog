@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MyBlogProject.Models.Model.Gallery>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Resim Bilgisi Ekleme Sayfası</h2>
+<hr />
+
+<p>
+    @Html.ActionLink("Yeni Resim Bilgisi Ekle", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered table-striped table-responsive-sm">
+    <tr>
+        <th>
+            Tanım
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinPicURL)
+        </th>
+        <th>
+            Orta Büyüklük Resim Yolu
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BigPicURL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created)
+        </th>
+        <th>İşlemler</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinPicURL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MidPicURL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BigPicURL)
+        </td>
+        <td>
+            @Html.Raw(item.Created.Value.Day + "/" + item.Created.Value.Month + "/" + item.Created.Value.Year)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id = item.GalleryId }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Sil", "Delete", new { id = item.GalleryId }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

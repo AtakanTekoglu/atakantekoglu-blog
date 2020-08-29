@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MyBlogProject.Models.Model.Contact>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>İletişim Sayfası Bilgileri</h2>
+<hr />
+<p>
+    @Html.ActionLink("Yeni İletişim Bilgisi Ekle", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered table-striped table-responsive-sm">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkHours)
+        </th>
+        <th>İşlemler</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkHours)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id = item.ContactId }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Sil", "Delete", new { id = item.ContactId }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

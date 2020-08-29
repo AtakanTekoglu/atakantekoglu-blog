@@ -1,0 +1,56 @@
+﻿@model MyBlogProject.Models.Model.ContactForm
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Ziyaretçi Görüş Sil</h2>
+
+<h3>Bu ziyaretçi yorumunu silmek istediğinize emin misiniz?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            İsim Soyisim
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Namesurname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            Konu
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            Mesaj
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Sil" class="btn btn-success" /> |
+    @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-primary" })
+</div>
+    }
+</div>

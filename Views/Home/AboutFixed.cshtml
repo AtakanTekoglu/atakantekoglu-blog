@@ -1,0 +1,37 @@
+﻿
+@{ 
+    Layout = null;
+}
+<div class="about-fixed">
+
+    <div class="my-pic">
+        <img src="@ViewBag.AuthorPicture" alt="">
+        <a href="javascript:void(0)" class="collapsed" data-target="#menu" data-toggle="collapse"><i class="icon-menu menu"></i></a>
+        <div id="menu" class="collapse">
+            <ul class="menu-link">
+                <li><a href="/Home/Index/">Anasayfa</a></li>
+                <li><a href="/Home/About">Hakkımda</a></li>
+
+                <li><a href="/Home/Iletisim/">İletişim</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="my-detail">
+
+        <div class="white-spacing">
+            <h1>Atakan Tekoğlu</h1>
+            <span>Bilgisayar Mühendisliği öğrencisi, Microsoft teknolojileri meraklısı, blogger, fitness sever, çalışması kolay, biraz detaycı. C#, JavaScript, bilgisayar bilimi sevdalısı.</span>
+        </div>
+
+        <ul class="social-icon">
+            <li><a href="@ViewBag.Social.Instagram" target="_blank" class="instagram"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="@ViewBag.Social.Linkedin" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="@ViewBag.Social.Github" target="_blank" class="github"><i class="fa fa-github"></i></a></li>
+            <li><a href="/Security/Login/" target="_blank" class="admin"><i class="fa fa-user"></i></a></li>
+        </ul>
+
+    </div>
+</div>

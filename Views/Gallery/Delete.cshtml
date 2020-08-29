@@ -1,0 +1,64 @@
+﻿@model MyBlogProject.Models.Model.Gallery
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Resim Bilgisi Sil</h2>
+
+<h3>@Model.Description başlıklı kaydı silmek istediğine emin misin?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinPicURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinPicURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MidPicURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MidPicURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BigPicURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BigPicURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-success" /> |
+            @Html.ActionLink("Listeye Dön", "Index",null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

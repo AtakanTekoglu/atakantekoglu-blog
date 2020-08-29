@@ -1,0 +1,56 @@
+﻿@model MyBlogProject.Models.Model.Author
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Yazar Kayıt Sil</h2>
+
+<h3>@Model.AuthorName @Model.AuthorSurname isimli yazarı silmek istediğine emin misin?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Gallery.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gallery.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorSurname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorSurname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Sil" class="btn btn-success" /> |
+    @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-primary" })
+</div>
+    }
+</div>

@@ -1,0 +1,173 @@
+﻿@model MyBlogProject.Models.Model.Article
+@{
+    ViewBag.Title = "BlogDetay";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+
+
+
+<link href="~/Content/comment.css" rel="stylesheet" />
+
+
+<div class="sub-title">
+    <a href="/Home/Index/" title="Anasayfaya Git"><h2>Anasayfa</h2></a>
+    <a href="#comment" class="smoth-scroll"><i class="icon-bubbles"></i></a>
+</div>
+
+
+<div class="col-md-12 content-page">
+    <div class="col-md-12 blog-post">
+
+
+        <!-- Post Headline Start -->
+        <div class="post-title">
+            <h1>@Model.Title</h1>
+        </div>
+        <!-- Post Headline End -->
+        <!-- Post Detail Start -->
+        <div class="post-info">
+            <span>@Model.ReleaseDate.Value.Day @Model.ReleaseDate.Value.ToString("MMMM", System.Globalization.CultureInfo.CreateSpecificCulture("tr")) @Model.ReleaseDate.Value.Year&nbsp; <span class="admin-color">@Model.Author.AuthorName @Model.Author.AuthorSurname</span>&nbsp;   <a href="/Home/GetArticleByCategory/@Model.Category.CategoryId">@Model.Category.Name</a></span>
+        </div>
+        <!-- Post Detail End -->
+
+
+        <p>@Html.Raw(Model.Content)</p>
+
+        <div class="about-author margin-top-70 margin-bottom-50">
+
+            <div class="picture">
+                <img src="@ViewBag.AuthorPicture" class="img-responsive" alt="">
+            </div>
+
+            <div class="c-padding">
+                <h3>Yazan <span class="admin-color">@Model.Author.AuthorName @Model.Author.AuthorSurname</span></h3>
+            </div>
+        </div>
+        <!-- Post Author Bio Box End -->
+        <!-- You May Also Like Start -->
+
+        <div class="comment-line-section margin-bottom-20">
+            <h3>Yorumlar</h3>
+            <div class="bootstrap snippets bootdey">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="blog-comment">
+
+                            @if (Model.Comments.OrderByDescending(x => x.CommentId).Where(x => x.IsApproved == true).Count() == 0)
+                            {
+                            <div class="post-comments">
+                                <p>Bu makaleye henüz bir yorum yapılmadı.</p>
+                            </div>
+                            }
+                            else
+                            {
+                                foreach (var item in Model.Comments.OrderByDescending(x => x.CommentId).Where(x => x.IsApproved == true))
+                                {
+                                    <ul class="comments">
+                                        <li class="clearfix">
+
+                                            <div class="post-comments">
+                                                <p class="meta"><span class="user-style">@item.NameSurname</span> yorum yaptı :</p>
+                                                <hr />
+                                                <p>
+                                                    @Html.Raw(item.Content)
+                                                </p>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                }
+                            }
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+        <div class="you-may-also-like margin-top-50 margin-bottom-50">
+            <h3>Son Yazılar</h3>
+            <div class="row">
+                @foreach (var item in ViewBag.LatestArticles)
+                {
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <a href="/Home/BlogDetay/@item.ArticleId"><p>@item.Title</p></a>
+                    </div>
+                }
+
+
+
+
+            </div>
+        </div>
+        <!-- You May Also Like End -->
+        <!-- Post Comment (Disqus) Start -->
+        <div id="comment" class="comment">
+            <h3>Bu makale hakkında yorum yapmak ister misiniz?</h3>
+
+
+            <div class="row">
+
+                <form>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" id="adsoyad" class="form-control" placeholder="*Ad Soyad" required />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" id="email" class="form-control" placeholder="*Email" required />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <textarea rows="8" type="text" id="icerik" class="form-control" placeholder="*Mesajınız" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <button type="submit" id="gonder" class="load-more-button">İlet</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/AdminLayout/js/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#gonder").click(function () {
+            var adiSoyadi = $("#adsoyad").val();
+            var ePosta = $("#email").val();
+            var icerik = $("#icerik").val();
+            $.ajax({
+                url: '/Home/CommentSection/',
+                data: { nameSurname: adiSoyadi, eMail: ePosta, content: icerik, articleId:@Model.ArticleId },
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    alert("Yorumunuz iletildi.Kontrol edildikten sonra yayınlanacaktır.");
+                }
+            });
+        });
+    })
+</script>

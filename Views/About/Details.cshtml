@@ -1,0 +1,51 @@
+﻿@model MyBlogProject.Models.Model.About
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>About</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Skill)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Skill)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AboutId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

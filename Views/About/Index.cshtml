@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MyBlogProject.Models.Model.About>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datatable').DataTable(
+            {
+                "language": {
+                    "url":"//cdn.datatables.net/plug-ins/1.10.21/i18n/Turkish.json"
+                }
+            });
+    });
+</script>
+<h2>Hakkımda</h2>
+
+<p>
+    @Html.ActionLink("Yeni Hakkımda Yazısı Ekle", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered table-striped table-responsive-sm" id="datatable">
+    <thead><tr>
+    <th>
+        @Html.DisplayNameFor(model => model.Title)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Content)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.ImageURL)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Skill)
+    </th>
+    <th>İşlemler</th>
+</tr></thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageURL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Skill)
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.AboutId }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Sil", "Delete", new { id = item.AboutId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+   
+
+</table>
